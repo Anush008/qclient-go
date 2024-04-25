@@ -1,7 +1,7 @@
 package qdrant
 
 import (
-	"github.com/qdrant/go-client/grpc"
+	"github.com/Anush008/qclient-go/grpc"
 )
 
 // ============ BEGIN COUNT OPTIONS ==============

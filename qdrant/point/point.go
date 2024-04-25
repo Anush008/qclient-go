@@ -1,20 +1,25 @@
-package qdrant
+package point
 
 import (
-	"github.com/qdrant/go-client/grpc"
+	"github.com/Anush008/qclient-go/grpc"
+	"github.com/Anush008/qclient-go/qdrant/value"
 )
 
 type PointStructBuilder struct {
 	point *grpc.PointStruct
 }
 
-func newPointStructBuilder() *PointStructBuilder {
-	return &PointStructBuilder{
-		point: &grpc.PointStruct{},
+type PointStructBuilderOption func(p *PointStructBuilder)
+
+func NewPointStruct(opts ...PointStructBuilderOption) *grpc.PointStruct {
+	builder := newPointStructBuilder()
+	for _, f := range opts {
+		f(builder)
 	}
+	return builder.point
 }
 
-func WithNumId(id uint64) func(*PointStructBuilder) {
+func WithNumId(id uint64) PointStructBuilderOption {
 	return func(b *PointStructBuilder) {
 		b.point.Id = &grpc.PointId{
 			PointIdOptions: &grpc.PointId_Num{
@@ -24,7 +29,7 @@ func WithNumId(id uint64) func(*PointStructBuilder) {
 	}
 }
 
-func WithUuid(id string) func(*PointStructBuilder) {
+func WithUuid(id string) PointStructBuilderOption {
 	return func(b *PointStructBuilder) {
 		b.point.Id = &grpc.PointId{
 			PointIdOptions: &grpc.PointId_Uuid{
@@ -34,7 +39,7 @@ func WithUuid(id string) func(*PointStructBuilder) {
 	}
 }
 
-func WithVector(vector []float32) func(*PointStructBuilder) {
+func WithVector(vector []float32) PointStructBuilderOption {
 	return func(b *PointStructBuilder) {
 		b.point.Vectors = &grpc.Vectors{
 			VectorsOptions: &grpc.Vectors_Vector{
@@ -46,7 +51,7 @@ func WithVector(vector []float32) func(*PointStructBuilder) {
 	}
 }
 
-func WithNamedVectors(vectors map[string][]float32) func(*PointStructBuilder) {
+func WithNamedVectors(vectors map[string][]float32) PointStructBuilderOption {
 	return func(b *PointStructBuilder) {
 		namedVectors := make(map[string]*grpc.Vector)
 		for name, vector := range vectors {
@@ -64,7 +69,7 @@ func WithNamedVectors(vectors map[string][]float32) func(*PointStructBuilder) {
 	}
 }
 
-func WithVectors(vectors map[string]*grpc.Vector) func(*PointStructBuilder) {
+func WithVectors(vectors map[string]*grpc.Vector) PointStructBuilderOption {
 	return func(b *PointStructBuilder) {
 		b.point.Vectors = &grpc.Vectors{
 			VectorsOptions: &grpc.Vectors_Vectors{
@@ -76,16 +81,14 @@ func WithVectors(vectors map[string]*grpc.Vector) func(*PointStructBuilder) {
 	}
 }
 
-func WithPayload(payload map[string]interface{}) func(*PointStructBuilder) {
+func WithPayload(payload map[string]interface{}) PointStructBuilderOption {
 	return func(b *PointStructBuilder) {
-		b.point.Payload = NewValueMap(payload)
+		b.point.Payload = value.NewValueMap(payload)
 	}
 }
 
-func NewPointStruct(builderFuncs ...func(*PointStructBuilder)) *grpc.PointStruct {
-	builder := newPointStructBuilder()
-	for _, f := range builderFuncs {
-		f(builder)
+func newPointStructBuilder() *PointStructBuilder {
+	return &PointStructBuilder{
+		point: &grpc.PointStruct{},
 	}
-	return builder.point
 }

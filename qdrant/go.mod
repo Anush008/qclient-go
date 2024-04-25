@@ -1,9 +1,11 @@
-module github.com/qdrant/go-client/client
+module github.com/Anush008/qclient-go/qdrant
 
-go 1.22.0
+go 1.22.2
+
+replace github.com/Anush008/qclient-go/grpc => ../grpc
 
 require (
-	github.com/qdrant/go-client/grpc v0.0.0-00010101000000-000000000000
+	github.com/Anush008/qclient-go/grpc v0.0.0-00010101000000-000000000000
 	google.golang.org/grpc v1.63.2
 )
 
@@ -14,5 +16,3 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240227224415-6ceb2ff114de // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 )
-
-replace github.com/qdrant/go-client/grpc => ../grpc

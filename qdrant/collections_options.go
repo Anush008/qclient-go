@@ -1,7 +1,7 @@
 package qdrant
 
 import (
-	qdrant "github.com/qdrant/go-client/grpc"
+	qdrant "github.com/Anush008/qclient-go/grpc"
 )
 
 // ============ BEGIN CREATE COLLECTION OPTIONS ==============

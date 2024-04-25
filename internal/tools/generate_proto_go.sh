@@ -20,7 +20,7 @@ esac
 # SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PROTO_DIR=./proto
 OUT_DIR=./grpc
-PACKAGE_NAME="github.com/qdrant/go-client;grpc"
+PACKAGE_NAME="github.com/Anush008/qclient-go;grpc"
 
 protoc \
     --experimental_allow_proto3_optional \

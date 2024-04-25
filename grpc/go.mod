@@ -1,6 +1,6 @@
-module github.com/qdrant/go-client/grpc
+module github.com/Anush008/qclient-go/grpc
 
-go 1.22.0
+go 1.22.2
 
 require (
 	google.golang.org/grpc v1.63.2

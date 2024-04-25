@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"math/rand"
 
-	"github.com/qdrant/go-client/grpc"
-	"github.com/qdrant/go-client/qdrant"
+	"github.com/Anush008/qclient-go/grpc"
+	"github.com/Anush008/qclient-go/qdrant"
+	"github.com/Anush008/qclient-go/qdrant/condition"
+	"github.com/Anush008/qclient-go/qdrant/point"
 )
 
 func main() {
@@ -57,10 +59,10 @@ func main() {
 	}
 
 	points := []*grpc.PointStruct{
-		qdrant.NewPointStruct(
-			qdrant.WithNumId(1),
-			qdrant.WithVector([]float32{0.213, 0.123, 0.456, 0.4124}),
-			qdrant.WithPayload(map[string]interface{}{
+		point.NewPointStruct(
+			point.WithNumId(1),
+			point.WithVector([]float32{0.213, 0.123, 0.456, 0.4124}),
+			point.WithPayload(map[string]interface{}{
 				"some_number": 1,
 				"some_bool":   true,
 				"nested": map[string]interface{}{
@@ -68,14 +70,14 @@ func main() {
 				},
 			})),
 
-		qdrant.NewPointStruct(
-			qdrant.WithUuid("ced3caa0-e1f5-492b-8a7c-be4a274ea2bd"),
-			qdrant.WithVector([]float32{0.213, 0.123, 0.456, -0.4124})),
+		point.NewPointStruct(
+			point.WithUuid("ced3caa0-e1f5-492b-8a7c-be4a274ea2bd"),
+			point.WithVector([]float32{0.213, 0.123, 0.456, -0.4124})),
 
-		qdrant.NewPointStruct(
-			qdrant.WithNumId(71),
-			qdrant.WithVector([]float32{-0.213, -0.123, -0.456, 0.3412}),
-			qdrant.WithPayload(map[string]interface{}{
+		point.NewPointStruct(
+			point.WithNumId(71),
+			point.WithVector([]float32{-0.213, -0.123, -0.456, 0.3412}),
+			point.WithPayload(map[string]interface{}{
 				"some_list": []interface{}{32, 523, false, "something"},
 			})),
 	}
@@ -104,8 +106,8 @@ func main() {
 
 	filter := &grpc.Filter{
 		Must: []*grpc.Condition{
-			qdrant.NewMatchBool("some_bool", true),
-			qdrant.NewMatchInt("some_number", 1),
+			condition.NewMatchBool("some_bool", true),
+			condition.NewMatchInt("some_number", 1),
 		},
 	}
 

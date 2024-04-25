@@ -1,7 +1,7 @@
-package qdrant
+package condition
 
 import (
-	"github.com/qdrant/go-client/grpc"
+	"github.com/Anush008/qclient-go/grpc"
 )
 
 func NewMatchKeyword(field, keyword string) *grpc.Condition {

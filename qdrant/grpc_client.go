@@ -3,7 +3,7 @@ package qdrant
 import (
 	"context"
 
-	qdrant "github.com/qdrant/go-client/grpc"
+	qdrant "github.com/Anush008/qclient-go/grpc"
 	"google.golang.org/grpc"
 )
 

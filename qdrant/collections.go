@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/qdrant/go-client/grpc"
+	"github.com/Anush008/qclient-go/grpc"
 )
 
 // Lists all the collections in the Qdrant instance

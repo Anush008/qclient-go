@@ -1,4 +1,4 @@
-package qdrant
+package value
 
 // This file contains methods to convert a generic map to Map of string to *grpc.Value(Qdrant payload type).
 // This is a custom implementatation based on "google.golang.org/protobuf/types/known/structpb".
@@ -24,7 +24,7 @@ import (
 	"fmt"
 	"unicode/utf8"
 
-	"github.com/qdrant/go-client/grpc"
+	"github.com/Anush008/qclient-go/grpc"
 )
 
 // Converts a map of string to interface{} to a map of string to *grpc.Value

@@ -3,7 +3,7 @@ package qdrant
 import (
 	"context"
 
-	"github.com/qdrant/go-client/grpc"
+	"github.com/Anush008/qclient-go/grpc"
 )
 
 // Returns the number of points in the given collection. Optionally, a filter can be applied.
